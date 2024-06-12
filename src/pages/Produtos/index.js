@@ -7,9 +7,9 @@ export default function Produtos() {
     const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
-        fetchProdutos(); // Busca os produtos quando o componente é montado
-        const intervalId = setInterval(fetchProdutos, 60000); // Atualiza os produtos a cada 60 segundos
-        return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
+        fetchProdutos(); 
+        const intervalId = setInterval(fetchProdutos, 60000); 
+        return () => clearInterval(intervalId); 
     }, []);
 
     const fetchProdutos = async () => {

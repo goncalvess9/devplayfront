@@ -25,7 +25,6 @@ export async function buscarJogoPorId(id) {
     return response.data;
 }
 
-// Função para atualizar um jogo
 export async function atualizarJogo(id, jogo) {
     const response = await axios.put(`${API_ADRESS}/games/${id}`, jogo, {
         headers: {
