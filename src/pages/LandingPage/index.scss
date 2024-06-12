@@ -1,0 +1,152 @@
+.LandingPage {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #111;
+  color: #fff;
+}
+
+header {
+  background-color: #000;
+  padding-bottom: 10px;
+}
+
+.top-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+  border-bottom: 1px solid #fff;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.login-btn {
+  position: absolute;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #FFF59C;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  border-radius: 20px;
+}
+
+.bottom-header-container {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-header {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.bottom-header ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.bottom-header ul li {
+  margin: 0 20px;
+}
+
+.bottom-header ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-img-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.main-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+  text-align: left;
+}
+
+.side-img-container {
+  background-color: #FFF59C;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.side-img {
+  width: 350px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.intro-texto {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.platforms, .products {
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.platforms h2, .products h2 {
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.platform-container, .product-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.platform, .product {
+  text-align: center;
+  background-color: #FFF59C;
+  padding: 10px;
+  border-radius: 10px;
+  width: 200px;
+}
+
+.platform img, .product img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.platforms p, .products p{
+  color: #000;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer img {
+  height: 150px;
+}

@@ -1,0 +1,35 @@
+.products {
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+  }
+  
+.products h2 {
+    margin-bottom: 20px;
+    color: #000;
+  }
+  
+.product-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+.product {
+    text-align: center;
+    background-color: #FFF59C;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+  }
+  
+.product img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+.products p{
+    color: #000;
+  }
