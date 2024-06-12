@@ -1,8 +1,21 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
+import { listarJogos } from "../../Api/gamesApi";
 
 export default function Produtos() {
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        fetchProdutos(); // Busca os produtos quando o componente é montado
+        const intervalId = setInterval(fetchProdutos, 60000); // Atualiza os produtos a cada 60 segundos
+        return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
+    }, []);
+
+    const fetchProdutos = async () => {
+        const listaProdutos = await listarJogos();
+        setProdutos(listaProdutos);
+    };
     return (
         <div>
             <div>
@@ -10,22 +23,16 @@ export default function Produtos() {
             </div>
 
             <div className='products'>
-        <h2>Produtos</h2>
-        <div className='product-container'>
-          <div className='product'>
-            <img src='/assets/images/zelda.png' alt='Zelda Breath of the Wild'/>
-            <p>Zelda Breath of the Wild<br/>R$ 299,99</p>
-          </div>
-          <div className='product'>
-            <img src='/assets/images/godofwar.png' alt='God Of War - Ragnarok'/>
-            <p>God Of War - Ragnarok<br/>R$ 249,99</p>
-          </div>
-          <div className='product'>
-            <img src='/assets/images/forza.png' alt='Forza Horizon 5'/>
-            <p>Forza Horizon 5<br/>R$ 219,99</p>
-          </div>
-        </div>
-      </div>
+                <h2>Produtos</h2>
+                <div className='product-container'>
+                    {produtos.map(produto => (
+                        <div className='product' key={produto.id}>
+                            <img src={produto.img} alt={produto.nome} />
+                            <p>{produto.nome}<br />R$ {produto.preco}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
 
             <div>

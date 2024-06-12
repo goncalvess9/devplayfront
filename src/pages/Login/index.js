@@ -16,13 +16,14 @@ export default function Login() {
                 <h2>Login</h2>
                 <div className='login-form'>
                     <input type='text' placeholder='Usuário'/>
-                    <input type='text' placeholder='Senha'/>
+                    <input type='password' placeholder='Senha'/>
                     <Link to='/Menu'>
                     <button>Entrar</button>
                     </Link>
                 </div>
             </div>
             </div>
+
 
 
         <div>
