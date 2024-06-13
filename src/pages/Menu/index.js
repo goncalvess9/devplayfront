@@ -7,11 +7,11 @@ import './index.scss';
 export default function Menu() {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
-    const [img, setImg] = useState(null); 
+    const [img, setImg] = useState('');
     const [games, setGames] = useState([]);
     const [editId, setEditId] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const [deleteId, setDeleteId] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [gameToDelete, setGameToDelete] = useState(null);
 
     useEffect(() => {
         fetchGames();
@@ -33,35 +33,26 @@ export default function Menu() {
         formData.append('preco', preco);
         formData.append('img', img);
 
-        if (editId) {
-            await atualizarJogo(editId, formData);
-            setEditId(null);
-        } else {
-            await salvarJogo(formData);
-        }
-
-        setNome('');
-        setPreco('');
-        setImg(null);
+        await salvarJogo(formData);
         fetchGames();
     };
 
-    const handleDelete = async (id) => {
-        setDeleteId(id);
-        setShowModal(true);
-    };
-
-    const confirmDelete = async () => {
-        await deletarJogo(deleteId);
-        setShowModal(false);
-        setDeleteId(null);
-        fetchGames();
-    };
-
-    const handleEdit = (game) => {
+    const handleEdit = async (game) => {
         setEditId(game.id);
         setNome(game.nome);
         setPreco(game.preco);
+        setImg(game.img);
+    };
+
+    const handleDelete = async (id) => {
+        await deletarJogo(id);
+        fetchGames();
+        setShowDeleteModal(false);
+    };
+
+    const confirmDelete = (game) => {
+        setShowDeleteModal(true);
+        setGameToDelete(game);
     };
 
     return (
@@ -87,7 +78,9 @@ export default function Menu() {
                         />
                         <input 
                             type='file' 
-                            onChange={handleFileChange} 
+                            placeholder='Imagem (URL)' 
+                            value={img} 
+                            onChange={(e) => setImg(e.target.value)} 
                             required 
                         />
                         <button type='submit'>{editId ? 'Salvar Alterações' : 'Cadastrar'}</button>
@@ -100,21 +93,21 @@ export default function Menu() {
                 <div className='product-container'>
                     {games.map(game => (
                         <div className='product' key={game.id}>
-                            <img src={`http://localhost:5000/uploads/${game.img}`} alt={game.nome} />
+                            <img src={game.img} alt={game.nome} />
                             <p>{game.nome}<br />R$ {game.preco}</p>
                             <button onClick={() => handleEdit(game)}>Editar</button>
-                            <button onClick={() => handleDelete(game.id)}>Excluir</button>
+                            <button onClick={() => confirmDelete(game)}>Excluir</button>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {showModal && (
-                <div className='modal'>
-                    <div className='modal-content'>
-                        <h3>Tem certeza que deseja excluir?</h3>
-                        <button onClick={confirmDelete}>Confirmar</button>
-                        <button onClick={() => setShowModal(false)}>Cancelar</button>
+            {showDeleteModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p>Deseja realmente excluir o jogo {gameToDelete.nome}?</p>
+                        <button onClick={() => handleDelete(gameToDelete.id)}>Sim</button>
+                        <button onClick={() => setShowDeleteModal(false)}>Não</button>
                     </div>
                 </div>
             )}
